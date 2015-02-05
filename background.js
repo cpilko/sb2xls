@@ -26,7 +26,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
 chrome.pageAction.onClicked.addListener(function(tab) {
   console.log('Clicked!');
       chrome.tabs.executeScript(null, {file: 'content_script.js'}, 	function(result){
-	  chrome.tabs.executeScript(null, {file: 'js/excellentexport.js'} , function() { 
+	  chrome.tabs.executeScript(null, {file: 'bower_components/excellentexport/excellentexport.min.js'} , function() { 
 		chrome.tabs.sendMessage(tab.id, {action: 'go'}, 
 			function(response){
 			    console.log('v0.2'+response); 
