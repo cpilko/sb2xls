@@ -1,0 +1,30 @@
+{
+  "name": "export-scoutbook",
+  "version": "0.2a",
+  "homepage": "https://github.com/cpilko/sb2xls",
+  "authors": [
+    "Chris Pilko <chris.pilko@gmail.com>"
+  ],
+  "description": "Chrome extension to export reports from Scoutbook to Excel.",
+  "main": "background.js",
+  "keywords": [
+    "Scoutbook",
+    "Excel",
+    "Export"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+      "excellentexport": "latest"
+  },
+  "preen": {
+      "excellentexport": ["*.min.js", "LICENSE.txt"]
+  }
+}
