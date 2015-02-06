@@ -1,13 +1,12 @@
 //Version 0.2
 // The background page is asking us to parse the table on the page.
-if (window == top) {
-  chrome.extension.onMessage.addListener(function(req, sender, sendMessage) {
-    console.log("Got request");
-	createHiddenTable();
-	addDownloadLink();
+function exportTable() {
+        console.log("Got request");
+	var cells = createHiddenTable();
+        console.log('There are '+cells+' cells in the result');
+	//addDownloadLink();
 	return 'Done!';
-  });
-}
+};
 
 var addDownloadLink = function(){
     var export_id = 'excel_export_link';
@@ -46,7 +45,7 @@ var addDownloadLink = function(){
 	    console.log("Clicking found link");
 		document.getElementById(export_id).click();
 	}
-}
+};
 
 var createHiddenTable = function(){
     //Scoutbook overwrites the DOM on page navigation, so destroy any old tables first.
@@ -91,7 +90,8 @@ var createHiddenTable = function(){
 		}	
 	new_table.appendChild(new_tbody);
 	target_div.appendChild(new_table);
-}
+        return r*c;
+};
 
 function runExcellentExport() {
     //Excellent Export via https://github.com/jmaister/excellentexport
@@ -114,4 +114,4 @@ function padDigits(number, digits) {
 
 String.prototype.ucfirst = function() {
 	return this.charAt(0).toUpperCase() + this.slice(1);
-}
+};
