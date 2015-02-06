@@ -22,9 +22,11 @@
     "tests"
   ],
   "dependencies": {
-      "excellentexport": "latest"
+      "excellentexport": "latest",
+      "sweetalert": "latest"
   },
   "preen": {
-      "excellentexport": ["*.min.js", "LICENSE.txt"]
+      "excellentexport": ["*.min.js", "LICENSE.txt"],
+      "sweetalert": ["lib/*.js", "lib/*.css", "LICENSE.txt"]
   }
 }
