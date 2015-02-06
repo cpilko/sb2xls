@@ -1,4 +1,5 @@
 //Version 0.2
+var version = '0.2';
 //Declare rules:
 var match_rules = {
     conditions: [
@@ -25,17 +26,31 @@ chrome.runtime.onInstalled.addListener(function(details) {
 // Called when the user clicks on the browser action.
 chrome.pageAction.onClicked.addListener(function(tab) {
   console.log('Clicked!');
-      chrome.tabs.executeScript(null, {file: 'content_script.js'}, 	function(result){
-	  chrome.tabs.executeScript(null, {file: 'bower_components/excellentexport/excellentexport.min.js'} , function() { 
-		chrome.tabs.sendMessage(tab.id, {action: 'go'}, 
-			function(response){
-			    console.log('v0.2'+response); 
-				//Reload the tab to clean up residual scripts still hanging around
-                //chrome.tabs.reload ();
-
-		    });
-	    });
-    });
- 
+  chrome.tabs.insertCSS(null, {file: "bower_components/sweetalert/lib/sweet-alert.css"}, 
+    executeScripts(null, [ 
+        { file: "bower_components/excellentexport/excellentexport.min.js" }, 
+        { file: "bower_components/sweetalert/lib/sweet-alert.min.js" },
+        { file: "content_script.js" },
+        { code: "exportTable();" }
+    ])
+  ) 
 });
+
+//From http://stackoverflow.com/questions/21535233/injecting-multiple-scripts-through-executescript-in-google-chrome
+function executeScripts(tabId, injectDetailsArray)
+{
+    function createCallback(tabId, injectDetails, innerCallback) {
+        return function () {
+            chrome.tabs.executeScript(tabId, injectDetails, innerCallback);
+        };
+    }
+
+    var callback = function(response){ console.log(version+' '+response); };
+
+    for (var i = injectDetailsArray.length - 1; i >= 0; --i)
+        callback = createCallback(tabId, injectDetailsArray[i], callback);
+
+    if (callback !== null)
+        callback();   // execute outermost function
+}
 
