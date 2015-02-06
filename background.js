@@ -46,7 +46,7 @@ function executeScripts(tabId, injectDetailsArray)
         };
     }
 
-    var callback = function(response){ console.log(version+' '+response); };
+    var callback = function(response){ console.log('v'+version+' '+response); };
 
     for (var i = injectDetailsArray.length - 1; i >= 0; --i)
         callback = createCallback(tabId, injectDetailsArray[i], callback);
