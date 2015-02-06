@@ -27,6 +27,6 @@
   },
   "preen": {
       "excellentexport": ["*.min.js", "LICENSE.txt"],
-      "sweetalert": ["lib/*.js", "lib/*.css", "LICENSE.txt"]
+      "sweetalert": ["lib/*.js", "lib/*.css", "lib/*.html", "LICENSE"]
   }
 }
