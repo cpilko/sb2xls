@@ -1,5 +1,6 @@
 //Version 0.2
-var version = '0.2';
+var manifestData = chrome.runtime.getManifest();
+var version = manifestData.version;
 //Declare rules:
 var match_rules = {
     conditions: [
