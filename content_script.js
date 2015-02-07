@@ -1,10 +1,39 @@
 //Version 0.2
-// The background page is asking us to parse the table on the page.
+// The background.js calls this to initiate the report export.
 function exportTable() {
         console.log("Got request");
 	var cells = createHiddenTable();
-        console.log('There are '+cells+' cells in the result');
-	//addDownloadLink();
+        //Data urls in >2M characters crash Chrome as of 2015-02-06
+        //https://code.google.com/p/chromium/issues/detail?id=44820#c1
+        //Testing shows that ~41000 cells is the threshhold.
+        var maxCells = 40000;
+        if ( cells > maxCells ) {
+            sweetAlert({
+              title: "Don't Be Greedy",
+              text: "Your report has " + cells + " data items in it.\n"+ 
+                      "Reports with more than "+ maxCells +
+                      " data items crash Chrome.\n"+
+                      "We recommend you break this up "+
+                      "into two or more smaller reports.",
+              type: "warning",
+              showCancelButton: true,
+              cancelButtonText: "I know what I'm doing",
+              confirmButtonColor: "#a5dc86",
+              confirmButtonText: "Ok, I'll fix it",
+              closeOnCancel: false,
+              html: false
+            }, function(isConfirm){
+                if (!isConfirm) {
+                    swal({
+                         title: "Here goes nothing",
+                         timer: 1000
+                    }, addDownloadLink() );
+                }
+            });
+        } else {
+            console.log('There are '+cells+' cells in the result');
+  	    addDownloadLink();
+        }
 	return 'Done!';
 };
 
