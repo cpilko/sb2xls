@@ -1,6 +1,6 @@
 {
     "name": "Export Scoutbook",
-	"version": "0.2.1",
+	"version": "0.3",
 	"description": "Exports Scoutbook reports as an Excel file",
 	"author": "Chris Pilko",
 	"icons": { 	"16": "images/logo_16.png",

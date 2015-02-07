@@ -1,11 +1,10 @@
-//Version 0.2
+//Version 0.3
 var manifestData = chrome.runtime.getManifest();
 var version = manifestData.version;
 //Declare rules:
 var match_rules = {
     conditions: [
 	   new chrome.declarativeContent.PageStateMatcher({
-	       //find pages like 'https://*.scoutbook.com/*/reports/report.asp'
 	       pageUrl: { hostSuffix: '.scoutbook.com',  schemes: ['https'] },
                css: ["#report"]
 	   })

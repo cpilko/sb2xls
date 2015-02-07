@@ -1,4 +1,4 @@
-//Version 0.2
+//Version 0.3
 // The background.js calls this to initiate the report export.
 function exportTable() {
         console.log("Got request");

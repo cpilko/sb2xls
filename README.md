@@ -10,12 +10,13 @@ This is a side project that I work on in my free time, and pretty much on an as-
 
 ##Revision history
 
++ v0.3: February 2015 -
+    + Fixed the issue of page icon showing on improper page by detecting css id=report
+    + Added a warning if reports with > 40,000 cells are exported.
+    + Updated dependencies with Bower + Preen
 + v0.2: June 2014 - Bug fixes.
 + v0.1: May 2014 - Initial release.
 
 ##TODO
 
-+ Update Excellent export with Bower.
-+ Deal with failures to automatically load in Chrome v40
-+ Find a solution to [@Jim Wharton's issue](https://www.scoutbook.com/mobile/forums/using-scoutbook/17481/report-builder-exports/) "This export extensions craps out if you try to print all the MB reqt details at this point."
 + Find a way to export the training report.
