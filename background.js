@@ -6,11 +6,8 @@ var match_rules = {
     conditions: [
 	   new chrome.declarativeContent.PageStateMatcher({
 	       //find pages like 'https://*.scoutbook.com/*/reports/report.asp'
-	       pageUrl: { 
-		       hostSuffix: '.scoutbook.com', 
-			   pathSuffix: '/reports/report.asp', 
-			   schemes: ['https']
-			}
+	       pageUrl: { hostSuffix: '.scoutbook.com',  schemes: ['https'] },
+               css: ["#report"]
 	   })
 	],
 	//If found, display the Page Action icon registered in the manifest.json
