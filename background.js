@@ -50,10 +50,10 @@ chrome.pageAction.onClicked.addListener(function(tab) {
         'title': 'Export this report to Excel',
       });
       chrome.tabs.insertCSS(null,
-        {file: 'bower_components/sweetalert/lib/sweet-alert.css'},
+        {file: 'bower_components/sweetalert/dist/sweetalert.css'},
         executeScripts(null, [
             {file: 'bower_components/excellentexport/excellentexport.min.js'},
-            {file: 'bower_components/sweetalert/lib/sweet-alert.min.js'},
+            {file: 'bower_components/sweetalert/dist/sweetalert.min.js'},
             {file: 'report_export_script.js'},
             {code: 'exportTable();'},
         ])

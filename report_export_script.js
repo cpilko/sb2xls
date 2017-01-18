@@ -102,26 +102,27 @@ let createHiddenTable = function() {
 	// Loop through the target table row by row
 	let r=0;
   let c=0;
-	while((row=targetTable.rows[r++]) !== null) {
+	while(typeof (row=targetTable.rows[r++]) != 'undefined') {
 		c=0;
 		let tr=document.createElement('tr');
 		// loop through each row cell by cell
-		while((cell=row.cells[c++]) !== null) {
+		while(typeof (cell=row.cells[c++]) != 'undefined') {
 			// Get the cell's contents
-			let newContents = cell.innerText;
-			if (cell.getElementsByTagName('img').length > 0) {
-				// If the cell has a checkbox image in it, get its name
-				let regex = /checkbox(\w+)48\.png/i;
-				let match = regex.exec(cell.getElementsByTagName('img')[0].src);
-				if ( match !== null) newContents = ucfirst(match[1]);
-			}
-			let td=document.createElement('td');
-			if (newContents.indexOf('Empty') > -1) {
-				newContents = 'Needs';
-				td.setAttribute('style', 'font-weight:bold');
-			}
-			td.appendChild(document.createTextNode(newContents));
-			tr.appendChild(td);
+      // console.log(typeof cell);
+      let newContents = cell.textContent;
+      if (cell.getElementsByTagName('img').length > 0) {
+        // If the cell has a checkbox image in it, get its name
+        let regex = /checkbox(\w+)48\.png/i;
+        let match = regex.exec(cell.getElementsByTagName('img')[0].src);
+        if ( match !== null) newContents = ucfirst(match[1]);
+      }
+      let td=document.createElement('td');
+      if (newContents.indexOf('Empty') > -1) {
+        newContents = 'Needs';
+        td.setAttribute('style', 'font-weight:bold');
+      }
+      td.appendChild(document.createTextNode(newContents));
+      tr.appendChild(td);
 		}
 		newTbody.appendChild(tr);
 		}
