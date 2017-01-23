@@ -1,4 +1,4 @@
-// Version 0.3.2
+// Version 0.4
 const manifestData = chrome.runtime.getManifest();
 const version = manifestData.version;
 // Declare rules:
@@ -52,8 +52,9 @@ chrome.pageAction.onClicked.addListener(function(tab) {
       chrome.tabs.insertCSS(null,
         {file: 'bower_components/sweetalert/dist/sweetalert.css'},
         executeScripts(null, [
-            {file: 'bower_components/excellentexport/excellentexport.min.js'},
+            {file: 'bower_components/excellentexport/excellentexport.js'},
             {file: 'bower_components/sweetalert/dist/sweetalert.min.js'},
+            {file: 'export_util.js'},
             {file: 'report_export_script.js'},
             {code: 'exportTable();'},
         ])
@@ -61,6 +62,18 @@ chrome.pageAction.onClicked.addListener(function(tab) {
   }
   if ( /\/reports\/roster\.asp.Action=Print/i.test(tab.url) ) {
       console.log('This is the roster screen.');
+      chrome.pageAction.setTitle({
+        'tabId': tab.id,
+        'title': 'Export this roster to Excel',
+      });
+      chrome.tabs.insertCSS(null,
+        executeScripts(null, [
+          {file: 'bower_components/excellentexport/excellentexport.js'},
+          {file: 'export_util.js'},
+          {file: 'roster_export_script.js'},
+          {code: 'exportRosters();'},
+        ])
+      );
   }
 });
 

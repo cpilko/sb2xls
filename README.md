@@ -23,6 +23,10 @@ two reports, one with Merit Badges A-M, another with Badges N-Z.
 
 ##Revision history
 
++ v0.4: January 2017 -
+    + Added roster export!
+    + Updated all client libraries
+    + Refactored code
 + v0.3: February 2015 -
     + Fixed the issue of page icon showing on improper page by detecting css id=report
     + Added a warning if reports with > 40,000 cells are exported.
@@ -33,8 +37,8 @@ two reports, one with Merit Badges A-M, another with Badges N-Z.
 ##TODO
 
 + Find a way to export the training report.
++ Transition to npm for package management.
 
 ##Contributing:
 
-+ This project uses [Bower]() for package management and [Preen]() to remove extraneous files from those packages.
-+ NetBeans metadata is inclded with this repository.
++ This project uses [Bower](https://bower.io/) for package management and [Preen](https://github.com/BradDenver/Preen) to remove extraneous files from those packages.

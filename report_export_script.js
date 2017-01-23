@@ -1,8 +1,7 @@
-// Version 0.3
+// Version 0.4
 // The background.js calls this to initiate the report export.
 /**
- * Recursively loads content scripts in the target page.
- * From http://stackoverflow.com/questions/21535233/injecting-multiple-scripts-through-executescript-in-google-chrome
+ * Creates a new hidden table with the content, and exports it.
  * @return {string} Completed message
  */
 function exportTable() {
@@ -73,7 +72,7 @@ let addDownloadLink = function() {
         document.createTextNode('Export '+ theTitle +' to Excel')
       );
 			targetDiv.appendChild(newLink);
-			newLink.onclick = runExcellentExport;
+			newLink.onclick = runExcellentExport(newLink, 'exportMe');
 			console.log('Clicking new link');
 			newLink.click();
 		} else {
@@ -129,45 +128,4 @@ let createHiddenTable = function() {
 	newTable.appendChild(newTbody);
 	targetDiv.appendChild(newTable);
   return r*c;
-};
-
-/**
- * Runs Excellent Export via https://github.com/jmaister/excellentexport
- * @this exportId
- * @return {object} DataUri
- */
-function runExcellentExport() {
-	return ExcellentExport.excel(this, 'exportMe', 'Sheet1');
-}
-
-/**
- * Create a date string like 2014-05-04 from the current date
- * @return {string} Formatted date
- */
-function getDateString() {
-  let da = new Date();
-	let y = da.getFullYear();
-	let m = da.getMonth() + 1;
-	let d = da.getDate();
-	return y + '-' + padDigits(m, 2) + '-' + padDigits(d, 2);
-}
-
-/**
- * Take a number and pad it with leading zeros: padDigits(4,5) => 00004
- * @param {int} number The number to format
- * @param {int} digits The number of leading zeroes to pad to
- * @return {string} Formatted number
- */
-function padDigits(number, digits) {
-  let len = String(number).length;
-  return Array(Math.max(digits - len + 1, 0)).join(0) + number;
-}
-
-/**
- * Capitalize the first character in a string
- * @param {string} string The string to format
- * @return {string} Formatted string
- */
-function ucfirst(string) {
-	return string.charAt(0).toUpperCase() + string.slice(1);
 };
